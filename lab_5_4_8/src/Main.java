@@ -16,7 +16,13 @@ public class Main {
 
         String sourceFilePath = "src/Main.java";
         String targetFilePath = outputDirectoryPath + "/MainWithoutComments.java";
-
+        try {
+            if (!new File(targetFilePath).createNewFile()) {
+                return;
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         try (BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
              BufferedWriter writer = new BufferedWriter(new FileWriter(targetFilePath))) {
 
